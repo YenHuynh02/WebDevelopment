@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html ng-app="factorial">
+    <title>Factorial Calculator</title>
+    <head>
+        <meta charset = "utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <!-- Declare Angular JavaScript-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+        <!-- Link to the Menu.css -->
+        <link href="Menu.css" rel="stylesheet">
+
+        <!--Declare Font awesome icon-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+        <script>
+            // This method uses to calculate the Factorial number
+            var app = angular.module('factorial', [])
+            app.controller('facControl', function($scope) {
+                    $scope.factorial = function() {
+                        var num = $scope.num;
+                        var factorialResult = 1;
+
+                    if(num > 0 ){
+                        for(var i = 1; i <= num; i++) {
+                        factorialResult *= i;
+                        }
+                        $scope.result = "Factorial of " +num+ ": " +factorialResult;
+                    }
+                    
+                    else if (num == null){
+                        $scope.result = "Please enter a value."
+                    }
+
+                    else{
+                        $scope.result = "Error! Please enter a number which is bigger than 0.";
+                    }
+                   }; 
+                $scope.factorial();
+            });
+        </script>
+    </head>    
+
+    <body>
+        <!--Display the header of the Factorial.html-->
+        <div class="jumbotron text-center" style="background-image: url(images/VN4.jpg); border: solid 4pt burlywood; background-size: cover; background-repeat: no-repeat; background-position: top;" >
+            <h1 style="color: lightcoral; font-size: 1.5em;">Program Name: Computer Engineering Technology <br>
+                Course Name: Web Programming</h1>
+            <h1 style="font-size: 1.5em; color: sandybrown;">Calculate the factorial of any integer value</h1> 
+        </div>
+
+        <!--Display the menu of the Factorial.html-->
+        <script src="Function.js"></script>
+        <script>
+            screenCheck();
+        </script>
+        <div class="topnav" id="myTopnav">
+            <a href="index.html">Index</a>
+            <a href="Cylinder.html">Cylinder</a>
+            <a href="Factorial.html" class="active">Factorial</a>
+            <a href="Prime.html">Prime</a>
+            <a href="javascript:void(0);" class="icon" onclick="screenCheck()">
+                <!--Font awesome icon-->
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+
+        <!--Display the content of the Factorial.html-->
+        <div class="jumbotron", ng-controller="facControl">
+            <h6 style="font-weight: bold; font-style: italic;">Please enter the value of the integer number</h6>
+
+            <!--Call the variable of integer number-->
+            <label for="num">Integer Number:</label>
+            <input id="num" type="number" ng-model="num" placeholder="Enter an integer value" ng-change="factorial()">
+            <br>
+
+            <!--Call the variable of Factorial-->
+            <label id="result" ng-bind="result"></label>
+            
+        </div>
+
+        <!--Display the footer of the Factorial.html-->
+        <div class="jumbotron text-center" style="background-image: url(images/VN4.jpg); font-weight: bold; border: solid 4pt burlywood; color: lightcoral; background-size: cover; background-repeat: no-repeat; background-position: bottom;" >
+            Student number: 041068712<br>
+            Student name: Yen Huynh <br>
+            Email Address: huyn0115@algonquinlive.com
+        </div>
+    </body>
+</html>

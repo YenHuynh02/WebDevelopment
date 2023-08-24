@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html ng-app="cylinder">
+    <title>Surface Area/Volume Calculator</title>
+    <head>
+        <meta charset = "utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        
+        <!-- Declare Angular JavaScript-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+        <!--Link to the Menu.css-->
+        <link href="Menu.css" rel="stylesheet">
+
+        <!--Declare Font awesome icon-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <script>
+            // This method uses to calculate the surface area and volume of Cylinder
+            var app = angular.module('cylinder', [])
+            app.controller('cylControl', function($scope){
+                $scope.calCylinder = function(){
+                    var radius = $scope.radius;
+                    var height = $scope.height;
+                    var resultSur, resultVol;
+
+                    if (height !== undefined && radius !== undefined) {
+                        if (radius >= 0 && height >=0){
+                            // Caculate the result of Surface Area and Volume of Cylinder
+                            resultSur = ((2 * Math.PI * Math.pow(radius, 2)) + (2 * Math.PI * radius * height)).toFixed(2);
+                            resultVol = (Math.PI * Math.pow(radius, 2) * height).toFixed(2);
+                            $scope.answer = "Surface Area of the Cylinder: " +resultSur;
+                            $scope.answer1 = "Volume of the Cylinder: " +resultVol;
+                        }
+
+                        else if (height < 0) {
+                            $scope.answer = "Invalid height!";
+                            $scope.answer1 = " ";
+                        }
+
+                        else if (radius < 0) {
+                            $scope.answer = "Invalid radius!";
+                            $scope.answer1 = " ";
+                        }
+
+                        else if (radius < 0 && height < 0) {
+                            $scope.answer = "Invalid radius!";
+                            $scope.answer1 = "Invalid height";
+                        }
+                    
+                        else {
+                            $scope.answer = "Error! Please enter a number which is bigger or equal than 0.";
+                            $scope.answer1 =" ";
+                        }
+                    }   
+                else {
+                    $scope.answer = "Please input the number for height and radius.";
+                    $scope.answer1 =" ";
+                }
+            };
+            $scope.calCylinder();
+            });
+        </script>
+
+    </head>
+    <body>
+        <!--Display the header of the Cylinder.html-->
+        <div class="jumbotron text-center" style="background-image: url(images/VN4.jpg); border: solid 4pt burlywood; background-size: cover; background-repeat: no-repeat; background-position: top;" >
+            <h1 style="color: lightcoral; font-size: 1.5em;">Program Name: Computer Engineering Technology <br>
+                Course Name: Web Programming</h1>
+            <h1 style="font-size: 1.5em; color: sandybrown;">Calculate the surface area and the volume of a cylinder</h1> 
+        </div>
+
+         <!--Display the menu of the Cylinder.html-->
+        <script src="Function.js"></script>
+        <script>
+            screenCheck();
+        </script>
+
+         <div class="topnav" id="myTopnav">
+            <a href="index.html">Index</a>
+            <a href="Cylinder.html" class="active">Cylinder</a>
+            <a href="Factorial.html">Factorial</a>
+            <a href="Prime.html">Prime</a>
+            <a href="javascript:void(0);" class="icon" onclick="screenCheck()">
+                <!--Font awesome icon-->
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+
+        <!--Display the content of the Cylinder.html-->
+        <div class="jumbotron", ng-controller="cylControl">
+            <h6 style="font-weight: bold; font-style: italic;">Please enter the radius and the height of the cylinder</h6>
+            
+            <!--Call the variable radius-->
+            <label for="radius">Radius of the Cylinder:</label>
+            <input id="radius" type="number" ng-model="radius" ng-change="calCylinder()" placeholder="Enter a value for radius">
+            <br>
+
+            <!--Call the variable of height-->
+            <label for="height">Height of a Cylinder:</label>
+            <input id="height" type="number" ng-model="height" ng-change="calCylinder()" placeholder="Enter a value for height">
+            <br>
+
+            <label id="answer" ng-bind="answer">{{answer}}</label>
+            <br>
+            <label id="answer1" ng-bind="answer1">{{answer1}}</label>
+        
+        </div>
+        
+        <!--Display the footer of the Cylinder.html-->
+        <div class="jumbotron text-center" style="background-image: url(images/VN4.jpg); font-weight: bold; border: solid 4pt burlywood; color: lightcoral; background-size: cover; background-repeat: no-repeat; background-position: bottom;" >
+            Student number: 041068712<br>
+            Student name: Yen Huynh <br>
+            Email Address: huyn0115@algonquinlive.com
+        </div>
+    </body>
+</html>
